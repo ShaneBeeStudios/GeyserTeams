@@ -1,5 +1,11 @@
+# GeyserTeams
+# By: ShaneBee
 
-
+# Teams
+# prefix = the prefix that will show infront of the player's name
+# suffix = the suffix that will show after the player's name
+# color = the color of the player's name as well as glow color (if/when applied)
+# priority = how high up in the tablist this team will show (0=highest)
 teams:
   java:
     prefix: "&7[&bJava&7]"
