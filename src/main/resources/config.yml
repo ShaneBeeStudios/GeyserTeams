@@ -1,0 +1,83 @@
+
+
+teams:
+  java:
+    prefix: "&7[&bJava&7]"
+    suffix: ""
+    color: aqua
+    priority: 0
+  switch:
+    prefix: "&7[&aSwitch&7]"
+    suffix: ""
+    color: green
+    priority: 1
+  xbox_one:
+    prefix: "&7[&aXbox&7]"
+    suffix: ""
+    color: green
+    priority: 2
+  ps4:
+    prefix: "&7[&aXbox&7]"
+    suffix: ""
+    color: green
+    priority: 3
+  ios:
+    prefix: "&7[&aiOS&7]"
+    suffix: ""
+    color: green
+    priority: 4
+  android:
+    prefix: "&7[&aAndroid&7]"
+    suffix: ""
+    color: green
+    priority: 5
+  windows_10:
+    prefix: "&7[&aXbox&7]"
+    suffix: ""
+    color: green
+    priority: 6
+  windows:
+    prefix: "&7[&aXbox&7]"
+    suffix: ""
+    color: green
+    priority: 7
+  fireos:
+    prefix: "&7[&aFireOS&7]"
+    suffix: ""
+    color: green
+    priority: 8
+  gear_vr:
+    prefix: "&7[&aGearVR&7]"
+    suffix: ""
+    color: green
+    priority: 9
+  windows_phone:
+    prefix: "&7[&aXbox&7]"
+    suffix: ""
+    color: green
+    priority: 10
+  hololens:
+    prefix: "&7[&aHololens&7]"
+    suffix: ""
+    color: green
+    priority: 11
+  # Unsure why Geyser has these, but we shall add them just in case
+  macos:
+    prefix: "&7[&aXbox&7]"
+    suffix: ""
+    color: green
+    priority: 12
+  unknown:
+    prefix: "&7[&aUnknown&7]"
+    suffix: ""
+    color: green
+    priority: 13
+
+
+messages:
+  prefix: "&7[&bGeyser&3Teams&7] "
+
+  # <team> will be replace with the team's name
+  # <player> will be replace with the player's name
+  join: "[<team>] <player> has joined the server"
+  quit: "[<team>] <player> has left the server"

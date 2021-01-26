@@ -1,0 +1,6 @@
+name: GeyserTeams
+main: com.shanebeestudios.gt.GeyserTeams
+version: '${project.version}'
+softdepend:
+  - floodgate-bukkit
+  - Geyser-Spigot
