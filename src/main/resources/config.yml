@@ -1,89 +1,108 @@
 # GeyserTeams
 # By: ShaneBee
 
+# HEX colors codes are supported in MC 1.16+ with the format '<#000000>'
+options:
+  chat:
+    # When enabled this plugin will format chat for you
+    enabled: true
+    # The format for chat
+    # <prefix> = prefix of the team
+    # <suffix> = suffix of the team
+    # <player> = player's display name
+    # <message> = the message sent
+    format: "<prefix> <player>: <message>"
+  join:
+    # When true, join messages will be formatted
+    enabled: true
+    # The format printed in game and to console
+    # Same options as chat (except <message>)
+    format: "<prefix>&b<player> &ahas joined the server"
+  quit:
+    # When true, quit messages will be formatted
+    enabled: true
+    # The format printed in game and to console
+    # Same options as chat (except <message>)
+    format: "<prefix>&b<player> &chas left the server"
+
 # Teams
-# prefix = the prefix that will show infront of the player's name
+# prefix = the prefix that will show in front of the player's name
 # suffix = the suffix that will show after the player's name
 # color = the color of the player's name as well as glow color (if/when applied)
+#  - uses Bukkit DyeColor enums -> https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/DyeColor.html
 # priority = how high up in the tablist this team will show (0=highest)
 teams:
   java:
-    prefix: "&7[&bJava&7]"
+    prefix: "&7[&bJava&7] "
     suffix: ""
-    color: aqua
+    color: white
     priority: 0
   switch:
-    prefix: "&7[&aSwitch&7]"
+    prefix: "&7[&aSwitch&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 1
   xbox_one:
-    prefix: "&7[&aXbox&7]"
+    prefix: "&7[&aXbox&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 2
   ps4:
-    prefix: "&7[&aXbox&7]"
+    prefix: "&7[&aXbox&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 3
   ios:
-    prefix: "&7[&aiOS&7]"
+    prefix: "&7[&aiOS&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 4
   android:
-    prefix: "&7[&aAndroid&7]"
+    prefix: "&7[&aAndroid&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 5
   windows_10:
-    prefix: "&7[&aXbox&7]"
+    prefix: "&7[&aXbox&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 6
   windows:
-    prefix: "&7[&aXbox&7]"
+    prefix: "&7[&aXbox&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 7
   fireos:
-    prefix: "&7[&aFireOS&7]"
+    prefix: "&7[&aFireOS&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 8
   gear_vr:
-    prefix: "&7[&aGearVR&7]"
+    prefix: "&7[&aGearVR&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 9
   windows_phone:
-    prefix: "&7[&aXbox&7]"
+    prefix: "&7[&aXbox&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 10
   hololens:
-    prefix: "&7[&aHololens&7]"
+    prefix: "&7[&aHololens&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 11
   # Unsure why Geyser has these, but we shall add them just in case
   macos:
-    prefix: "&7[&aXbox&7]"
+    prefix: "&7[&aXbox&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 12
   unknown:
-    prefix: "&7[&aUnknown&7]"
+    prefix: "&7[&aUnknown&7] "
     suffix: ""
-    color: green
+    color: white
     priority: 13
-
 
 messages:
   prefix: "&7[&bGeyser&3Teams&7] "
-
-  # <team> will be replace with the team's name
-  # <player> will be replace with the player's name
-  join: "[<team>] <player> has joined the server"
-  quit: "[<team>] <player> has left the server"

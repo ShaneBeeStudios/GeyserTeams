@@ -1,46 +1,70 @@
 package com.shanebeestudios.gt.listener;
 
 import com.shanebeestudios.gt.GeyserTeams;
+import com.shanebeestudios.gt.config.Config;
 import com.shanebeestudios.gt.data.GTeam;
+import com.shanebeestudios.gt.util.Utils;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
-import org.geysermc.floodgate.FloodgateAPI;
-import org.geysermc.floodgate.util.DeviceOS;
-
-import java.util.Locale;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerListener implements Listener {
 
     private final GeyserTeams plugin;
-    private final Scoreboard mainScoreboard;
 
     public PlayerListener(GeyserTeams plugin) {
         this.plugin = plugin;
-        this.mainScoreboard = plugin.getServer().getScoreboardManager().getMainScoreboard();
     }
 
     @EventHandler
     private void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        plugin.getTeamManager().joinPlayerToTeam(player);
 
-        GTeam gTeam;
-        if (FloodgateAPI.isBedrockPlayer(player)) {
-            DeviceOS deviceOS = FloodgateAPI.getPlayer(player).getDeviceOS();
-            String name = deviceOS.toString().toLowerCase(Locale.ROOT).replace(" ", "_");
-            gTeam = plugin.getGTeams().getTeam(name);
-        } else {
-            gTeam = plugin.getGTeams().getTeam("java");
+        if (!Config.OPTIONS_JOIN_ENABLED) return;
+        String format = getFormat(player, Config.OPTIONS_JOIN_FORMAT);
+        if (format != null) {
+            event.setJoinMessage(Utils.getColString(format));
         }
-        if (gTeam != null) {
-            Team team = mainScoreboard.getTeam(gTeam.getId());
-            if (team != null) {
-                team.addEntry(player.getName());
-            }
+    }
+
+    @EventHandler
+    private void onQuit(PlayerQuitEvent event) {
+        if (!Config.OPTIONS_QUIT_ENABLED) return;
+        String format = getFormat(event.getPlayer(), Config.OPTIONS_QUIT_FORMAT);
+        if (format != null) {
+            event.setQuitMessage(Utils.getColString(format));
         }
+    }
+
+    @EventHandler
+    private void onChat(AsyncPlayerChatEvent event) {
+        if (event.isCancelled() || !Config.OPTIONS_CHAT_ENABLED) return;
+
+        Player player = event.getPlayer();
+        String message = event.getMessage();
+
+        String format = getFormat(player, Config.OPTIONS_CHAT_FORMAT);
+        if (format != null) {
+            format = format.replace("<message>", ChatColor.stripColor(Utils.getColString(message)));
+            event.setFormat(Utils.getColString(format));
+        }
+    }
+
+    private String getFormat(Player player, String format) {
+        GTeam gTeam = plugin.getTeamManager().getTeam(player);
+        if (gTeam == null) {
+            return null;
+        }
+        String form = format;
+        form = form.replace("<player>", player.getDisplayName());
+        form = form.replace("<prefix>", gTeam.getPrefix());
+        form = form.replace("<suffix>", gTeam.getSuffix());
+        return form;
     }
 
 }

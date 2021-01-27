@@ -28,7 +28,7 @@ public class GTeams {
     }
 
     @Nullable
-    public GTeam getByID(@NotNull String id) {
+    public GTeam getTeamById(@NotNull String id) {
         if (TEAM_BY_ID.containsKey(id)) {
             return TEAM_BY_ID.get(id);
         }

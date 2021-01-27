@@ -4,3 +4,6 @@ version: '${project.version}'
 softdepend:
   - floodgate-bukkit
   - Geyser-Spigot
+commands:
+  test:
+    description: test command

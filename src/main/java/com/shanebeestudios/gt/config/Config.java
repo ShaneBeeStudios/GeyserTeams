@@ -19,6 +19,14 @@ public class Config {
     private File configFile;
     private FileConfiguration config;
 
+    // OPTIONS
+    public static boolean OPTIONS_CHAT_ENABLED;
+    public static String OPTIONS_CHAT_FORMAT;
+    public static boolean OPTIONS_JOIN_ENABLED;
+    public static String OPTIONS_JOIN_FORMAT;
+    public static boolean OPTIONS_QUIT_ENABLED;
+    public static String OPTIONS_QUIT_FORMAT;
+
     public Config(GeyserTeams plugin) {
         this.plugin = plugin;
         loadConfigFile();
@@ -68,6 +76,13 @@ public class Config {
     private void loadConfig() {
         Utils.setPrefix(config.getString("messages.prefix"));
         loadTeams();
+
+        OPTIONS_CHAT_ENABLED = config.getBoolean("options.chat.enabled");
+        OPTIONS_CHAT_FORMAT = config.getString("options.chat.format");
+        OPTIONS_JOIN_ENABLED = config.getBoolean("options.join.enabled");
+        OPTIONS_JOIN_FORMAT = config.getString("options.join.format");
+        OPTIONS_QUIT_ENABLED = config.getBoolean("options.quit.enabled");
+        OPTIONS_QUIT_FORMAT = config.getString("options.quit.format");
     }
 
     private void loadTeams() {

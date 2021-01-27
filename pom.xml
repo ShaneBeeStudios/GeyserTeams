@@ -70,7 +70,7 @@
                         <version>3.2.0</version>
                         <configuration>
                             <!-- Put here wherever you would like the plugin to build -->
-                            <outputDirectory>/Users/shanebolenback/Desktop/Server/TEST-SERVER/plugins</outputDirectory>
+                            <outputDirectory>/Users/ShaneBee/Desktop/Server/BLOCK-BREAK-TEST/plugins</outputDirectory>
                         </configuration>
                     </plugin>
                 </plugins>
