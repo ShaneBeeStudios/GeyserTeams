@@ -15,6 +15,7 @@ public class Utils {
     private static final Pattern HEX_PATTERN = Pattern.compile("<#([A-Fa-f0-9]){6}>");
     private static final String[] BUKKIT_VERSION = Bukkit.getServer().getBukkitVersion().split("-")[0].split("\\.");
 
+    @SuppressWarnings("deprecation")
     public static String getColString(@NotNull String string) {
         Matcher matcher = HEX_PATTERN.matcher(string);
         if (isRunningMinecraft(1, 16)) {

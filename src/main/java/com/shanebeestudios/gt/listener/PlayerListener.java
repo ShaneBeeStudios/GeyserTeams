@@ -20,6 +20,7 @@ public class PlayerListener implements Listener {
         this.plugin = plugin;
     }
 
+    @SuppressWarnings("deprecation")
     @EventHandler
     private void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -32,6 +33,7 @@ public class PlayerListener implements Listener {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @EventHandler
     private void onQuit(PlayerQuitEvent event) {
         if (!Config.OPTIONS_QUIT_ENABLED) return;
@@ -41,6 +43,7 @@ public class PlayerListener implements Listener {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @EventHandler
     private void onChat(AsyncPlayerChatEvent event) {
         if (event.isCancelled() || !Config.OPTIONS_CHAT_ENABLED) return;
@@ -55,6 +58,7 @@ public class PlayerListener implements Listener {
         }
     }
 
+    @SuppressWarnings("deprecation")
     private String getFormat(Player player, String format) {
         GTeam gTeam = plugin.getTeamManager().getTeam(player);
         if (gTeam == null) {

@@ -2,12 +2,12 @@ package com.shanebeestudios.gt.data;
 
 public class GTeam {
 
-    private String name;
-    private String id;
-    private String prefix;
-    private String suffix;
-    private String color;
-    private int priority;
+    private final String name;
+    private final String id;
+    private final String prefix;
+    private final String suffix;
+    private final String color;
+    private final int priority;
 
     public GTeam(String name, String prefix, String suffix, String color, int priority) {
         this.name = name;

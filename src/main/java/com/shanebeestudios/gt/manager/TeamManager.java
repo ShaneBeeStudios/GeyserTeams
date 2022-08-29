@@ -10,8 +10,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
-import org.geysermc.floodgate.FloodgateAPI;
-import org.geysermc.floodgate.util.DeviceOS;
+import org.geysermc.floodgate.api.FloodgateApi;
+import org.geysermc.floodgate.util.DeviceOs;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,11 +25,13 @@ public class TeamManager {
     private final GeyserTeams PLUGIN;
     private final Scoreboard MAIN_BOARD;
     private final Map<UUID, GTeam> TEAMS;
+    private final FloodgateApi floodgateApi;
 
     public TeamManager(GeyserTeams plugin) {
         this.PLUGIN = plugin;
         this.MAIN_BOARD = plugin.getServer().getScoreboardManager().getMainScoreboard();
         this.TEAMS = new HashMap<>();
+        floodgateApi = FloodgateApi.getInstance();
 
         registerTeams();
 
@@ -47,11 +49,7 @@ public class TeamManager {
 
         // Register Geyser teams based on devices
         GTeams gTeams = PLUGIN.getGTeams();
-        for (DeviceOS value : DeviceOS.values()) {
-            if (value == DeviceOS.NX) {
-                // I have no clue what this device really is
-                continue;
-            }
+        for (DeviceOs value : DeviceOs.values()) {
 
             String name = value.toString().toLowerCase(Locale.ROOT).replace(" ", "_");
             GTeam gTeam = gTeams.getTeam(name);
@@ -67,6 +65,7 @@ public class TeamManager {
         }
     }
 
+    @SuppressWarnings("deprecation")
     private void registerTeam(String name, GTeam gTeam) {
         String teamID = gTeam.getId();
         Team team = this.MAIN_BOARD.getTeam(teamID);
@@ -92,11 +91,12 @@ public class TeamManager {
 
     public void joinPlayerToTeam(@NotNull Player player) {
         String playerName = player.getName();
+        UUID uuid = player.getUniqueId();
 
         // Fallback team (if not using a Bedrock device)
         String teamName = "java";
-        if (FloodgateAPI.isBedrockPlayer(player)) {
-            DeviceOS deviceOS = FloodgateAPI.getPlayer(player).getDeviceOS();
+        if (floodgateApi.isFloodgatePlayer(uuid)) {
+            DeviceOs deviceOS = floodgateApi.getPlayer(uuid).getDeviceOs();
             teamName = deviceOS.toString().toLowerCase(Locale.ROOT).replace(" ", "_");
         }
 
@@ -113,7 +113,7 @@ public class TeamManager {
         }
 
         team.addEntry(playerName);
-        this.TEAMS.put(player.getUniqueId(), gTeam);
+        this.TEAMS.put(uuid, gTeam);
     }
 
     @Nullable
